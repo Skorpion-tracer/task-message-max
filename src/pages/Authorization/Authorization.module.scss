@@ -1,0 +1,35 @@
+.authorization {
+    min-width: min(50%, 400px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--primary-color);
+    padding: 30px 50px;
+    border: 1px solid var(--stroke-step-color);
+    border-radius: var(--radius-size);
+}
+
+.header {
+    font-size: 20px;
+}
+
+.hint {
+    color: var(--text-secondary-color);
+    font-size: 12px;
+    text-align: justify;
+    margin: 0 0 20px 0;
+}
+
+.hintError {
+    color: var(--text-error-color);
+}
+
+.authorizationForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 360px;
+}

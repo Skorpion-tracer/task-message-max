@@ -1,0 +1,20 @@
+.inputNumber {
+    min-width: min(50%, 500px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--primary-color);
+    padding: 20px;
+    border-radius: var(--radius-size);
+}
+
+.inputForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 360px;
+}
+
+

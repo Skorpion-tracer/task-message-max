@@ -1,0 +1,14 @@
+.spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 60px;
+    background: var(--primary-color);
+    border-radius: var(--radius-size);
+}
+
+.spinnerIcon {
+    width: 150px;
+    height: 150px;
+}

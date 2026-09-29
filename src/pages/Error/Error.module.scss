@@ -1,0 +1,16 @@
+.error {
+    min-width: min(50%, 400px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--primary-color);
+    padding: 50px;
+    border-radius: var(--radius-size);
+}
+
+.image {
+    width: 350px;
+    height: 350px;
+    margin: 30px;
+}

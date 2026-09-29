@@ -1,0 +1,1 @@
+export const URL = "https://3100.api.green-api.com/";

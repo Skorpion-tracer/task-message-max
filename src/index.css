@@ -1,0 +1,35 @@
+#root {
+    --primary-color: linear-gradient(190deg, #d3e8f9, #F0F8FC);
+    --stroke-step-color: #e1e1e1;
+    --text-primary-color: #000000;
+    --text-secondary-color: #696969;
+    --text-error-color: #d51313;
+    --text-button-color: #ffffff;
+    --button-color: #007AFF;
+    --button-hover-color: #479FFF;
+    --primary-input-color: #D6E4EE;
+
+    --radius-size: 30px;
+
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.2;
+
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
