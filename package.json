@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^1.20.0",
     "classnames": "^2.5.1",
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "node-ts-resolver": "^1.0.0",
@@ -21,6 +22,7 @@
     "react-router": "^7.18.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/express-session": "^1.19.0",
     "@types/node": "^24.19.0",

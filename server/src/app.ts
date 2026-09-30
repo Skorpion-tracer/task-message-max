@@ -4,6 +4,7 @@ import axios from "axios";
 import type {UserData} from "../../src/api/UserData.ts";
 import {URL} from "../../src/api/Api.js";
 import type {CheckAccount} from "../../src/api/CheckAccount.ts";
+import cors from 'cors';
 
 declare module 'express-session' {
     interface SessionData {
@@ -23,16 +24,26 @@ const ERROR_MESSAGES: Record<string, string> = {
 };
 
 const app = express();
+
+app.set('trust proxy', 1);                    // ← добавить
+app.use(cors({                                 // ← добавить
+    origin: 'https://task-message-max.vercel.app',
+    credentials: true
+}));
 app.use(express.json());
 app.use(session({
     secret: process.env.SESSION_SECRET || 'test-secret',
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' },
+    cookie: {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        maxAge: 24 * 60 * 60 * 1000
+    },
 }));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 app.post('/api/login', async (req: Request<{}, {}, UserData>, res: Response) => {
     const { idInstance, apiTokenInstance } = req.body;
