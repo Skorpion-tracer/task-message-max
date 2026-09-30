@@ -1,32 +1,86 @@
-# React + TypeScript + Vite
+# Task Message Max
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Локальный запуск приложения состоит из двух процессов:
+- клиентский фронтенд: Vite dev server
+- серверный API: Express server
 
-Currently, two official plugins are available:
+## Установка зависимостей
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Запуск сервера
+
+В отдельном терминале:
+
+```bash
+npm run server
+```
+
+Сервер запускается на порту `3000`.
+
+## Запуск клиента
+
+Во втором терминале:
+
+```bash
+npm run dev
+```
+
+Клиент запускается на `http://localhost:5173`.
+
+## Как это работает
+
+- Vite dev server отвечает за frontend (`npm run dev`)
+- Express сервер отвечает за API (`npm run server`)
+- В `vite.config.ts` настроен proxy для `/api` на `http://localhost:3000`
+
+## Переменные окружения
+
+Для работы сервера нужен `SESSION_SECRET`.
+
+Можно задать локально в терминале перед запуском:
+
+```bash
+SESSION_SECRET=your-secret-key npm run server
+```
+
+Или создать файл `.env`:
+
+```env
+SESSION_SECRET=your-secret-key
+```
+
+## Полный цикл запуска
+
+1. Установить зависимости:
+   ```bash
+   npm install
+   ```
+2. Запустить сервер:
+   ```bash
+   npm run server
+   ```
+3. Запустить клиент:
+   ```bash
+   npm run dev
+   ```
+4. Открыть в браузере:
+   ```text
+   http://localhost:5173
+   ```
+
+## Сборка проекта
+
+```bash
+npm run build
+```
+
+## Продакшн запуск
+
+После сборки приложение можно запустить как один сервер:
+
+```bash
+npm start
+```
