@@ -48,6 +48,8 @@ app.use(session({
 
 const PORT = process.env.PORT || 3000;
 
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 app.post('/api/login', async (req: Request<{}, {}, UserData>, res: Response) => {
     const { idInstance, apiTokenInstance } = req.body;
     try {
@@ -55,7 +57,13 @@ app.post('/api/login', async (req: Request<{}, {}, UserData>, res: Response) => 
 
         if (data.stateInstance === "authorized" || data.stateInstance === "suspended") {
             req.session.green = { idInstance, apiTokenInstance };
-            res.json({ ok: true });
+            req.session.save((err) => {
+                if (err) {
+                    console.error('Session save error:', err);
+                    return res.status(500).json({ error: 'Ошибка сохранения сессии' });
+                }
+                return res.json({ ok: true });
+            });
             return;
         }
         return res.status(401).json({ error: ERROR_MESSAGES[data.stateInstance] ?? "Неизвестная ошибка" });
