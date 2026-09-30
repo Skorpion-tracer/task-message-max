@@ -83,10 +83,12 @@ app.get('/api/me', (req: Request, res: Response) => {
 app.post('/api/check-account', async (req: Request, res: Response) => {
     const green = req.session.green;
     if (!green) {
+        console.log("нет green в сессии");
         return res.status(401).json({ error: 'Не авторизован' });
     }
 
     const { phoneNumber } = req.body;
+    console.log("передан телефон в теле:", phoneNumber);
 
     try {
         const { data } = await axios.post<CheckAccount>(
