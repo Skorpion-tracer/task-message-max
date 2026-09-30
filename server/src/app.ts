@@ -27,9 +27,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
 
-if (isProduction) {
-    app.set('trust proxy', 1);
-}
+app.set('trust proxy', 1);
 
 app.use(cors({
     origin: 'https://task-message-max.vercel.app',
