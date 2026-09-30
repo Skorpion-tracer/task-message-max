@@ -1,3 +1,4 @@
+import path from 'node:path';
 import express, {type Request, type Response} from 'express';
 import session from 'express-session';
 import type {UserData} from "./api/UserData.ts";
@@ -29,8 +30,14 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' },
-
 }));
+
+app.use(express.static(path.resolve(process.cwd(), 'dist')));
+
+app.get(/^(?!\/api).*/, (res: Response) => {
+  res.sendFile(path.resolve(process.cwd(), 'dist', 'index.html'));
+});
+
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 

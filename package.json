@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
+    "build": "tsc && vite build",
+    "start": "tsx src/app.ts",
     "preview": "vite preview"
   },
   "dependencies": {
