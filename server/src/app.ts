@@ -1,10 +1,10 @@
 import path from 'node:path';
 import express, {type Request, type Response} from 'express';
 import session from 'express-session';
-import type {UserData} from "../src/api/UserData.ts";
+import type {UserData} from "../../src/api/UserData.ts";
 import axios from "axios";
-import {URL} from "../src/api/Api.js";
-import {type CheckAccount} from "../src/api/CheckAccount.js";
+import {URL} from "../../src/api/Api.js";
+import {type CheckAccount} from "../../src/api/CheckAccount.js";
 
 declare module 'express-session' {
     interface SessionData {
