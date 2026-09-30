@@ -1,10 +1,9 @@
-import path from 'node:path';
 import express, {type Request, type Response} from 'express';
 import session from 'express-session';
-import type {UserData} from "../../src/api/UserData.ts";
 import axios from "axios";
+import type {UserData} from "../../src/api/UserData.ts";
 import {URL} from "../../src/api/Api.js";
-import {type CheckAccount} from "../../src/api/CheckAccount.js";
+import type {CheckAccount} from "../../src/api/CheckAccount.ts";
 
 declare module 'express-session' {
     interface SessionData {
@@ -32,13 +31,7 @@ app.use(session({
     cookie: { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' },
 }));
 
-app.use(express.static(path.resolve(process.cwd(), 'dist')));
-
-app.get(/^(?!\/api).*/, (res: Response) => {
-  res.sendFile(path.resolve(process.cwd(), 'dist', 'index.html'));
-});
-
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 app.post('/api/login', async (req: Request<{}, {}, UserData>, res: Response) => {
@@ -156,6 +149,4 @@ app.get('/api/receive', async (req: Request, res: Response) => {
         receiving = false;
     }
 });
-
-
-export default app;
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
