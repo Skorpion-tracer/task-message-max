@@ -29,7 +29,7 @@ const Chat: FC = () => {
 
     const getPhone = async (phone: number) => {
         console.log(phone);
-        const response = await axios.post(`${API_URL}/api/check-account`, { phoneNumber: phone });
+        const response = await axios.post(`${API_URL}/api/check-account`, { phoneNumber: phone }, { withCredentials: true });
         if (response.data.ok) {
             setChatId(true);
         }
@@ -49,7 +49,7 @@ const Chat: FC = () => {
 
     const onSendMessage = async (message: string) => {
         try {
-            const response = await axios.post(`${API_URL}/api/send`, { message: message });
+            const response = await axios.post(`${API_URL}/api/send`, { message: message }, { withCredentials: true });
             if (response.data.ok) {
                 addMessage(message, "response");
             }
@@ -85,7 +85,7 @@ const Chat: FC = () => {
             console.log("Запуск метода таймера");
             if (cancelled) return;
             try {
-                const response = await axios.get(`${API_URL}/api/receive`);
+                const response = await axios.get(`${API_URL}/api/receive`, { withCredentials: true });
                 console.log(response.data.message);
                 if (response.data.ok && response.data.message?.textMessage) {
                     addMessage(response.data.message.textMessage, "receive");
