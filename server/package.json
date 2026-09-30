@@ -1,0 +1,13 @@
+{
+  "name": "task-message-max-server",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "axios": "^1.20.0"
+  }
+}
