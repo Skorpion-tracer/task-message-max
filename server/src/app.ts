@@ -23,10 +23,15 @@ const ERROR_MESSAGES: Record<string, string> = {
     pendingPassword: 'Для завершения авторизации необходимо отправить пароль двухфакторной аутентификации',
 };
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const app = express();
 
-app.set('trust proxy', 1);                    // ← добавить
-app.use(cors({                                 // ← добавить
+if (isProduction) {
+    app.set('trust proxy', 1);
+}
+
+app.use(cors({
     origin: 'https://task-message-max.vercel.app',
     credentials: true
 }));
@@ -37,8 +42,8 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        sameSite: 'none',
-        secure: true,
+        sameSite: isProduction ? 'none' : 'lax',
+        secure: isProduction,
         maxAge: 24 * 60 * 60 * 1000
     },
 }));
