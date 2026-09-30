@@ -3,6 +3,7 @@ import {type FC, useEffect, useRef, useState} from "react";
 import InputNumber from "../../components/InputNumber/InputNumber.js";
 import axios from "axios";
 import InputMessage from "../../components/InputMessage/InputMessage.js";
+import { API_URL } from "../../api/Config.js";
 
 const MAX_COUNT_MESSAGES = 40;
 
@@ -28,7 +29,7 @@ const Chat: FC = () => {
 
     const getPhone = async (phone: number) => {
         console.log(phone);
-        const response = await axios.post('/api/check-account', { phoneNumber: phone });
+        const response = await axios.post(`${API_URL}/api/check-account`, { phoneNumber: phone });
         if (response.data.ok) {
             setChatId(true);
         }
@@ -48,7 +49,7 @@ const Chat: FC = () => {
 
     const onSendMessage = async (message: string) => {
         try {
-            const response = await axios.post('/api/send', { message: message });
+            const response = await axios.post(`${API_URL}/api/send`, { message: message });
             if (response.data.ok) {
                 addMessage(message, "response");
             }
@@ -84,7 +85,7 @@ const Chat: FC = () => {
             console.log("Запуск метода таймера");
             if (cancelled) return;
             try {
-                const response = await axios.get('/api/receive');
+                const response = await axios.get(`${API_URL}/api/receive`);
                 console.log(response.data.message);
                 if (response.data.ok && response.data.message?.textMessage) {
                     addMessage(response.data.message.textMessage, "receive");

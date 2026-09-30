@@ -7,6 +7,7 @@ import {useNavigate} from "react-router";
 import Header from "../../components/Header/Header.js";
 import Button from "../../components/Button/Button.js";
 import {Input} from "../../components/Input/Input.js";
+import { API_URL } from '../../api/Config.js';
 
 type FormData = {
     idInstance: number;
@@ -18,7 +19,7 @@ const Authorization: FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('/api/me', { withCredentials: true })
+        axios.get(`${API_URL}/api/me`, { withCredentials: true })
             .then(r => {
                 if (r.data.authorized) navigate('/chat');
             })
@@ -48,7 +49,7 @@ const Authorization: FC = () => {
 
     const onSubmit: SubmitHandler<FormData> = async (formData: FormData) => {
         try {
-            const response = await axios.post('/api/login', { ...formData }, { withCredentials: true });
+            const response = await axios.post(`${API_URL}/api/login`, { ...formData }, { withCredentials: true });
             if (response.data.ok) {
                 navigate('/chat');
                 console.log("Авторизация успешна");
