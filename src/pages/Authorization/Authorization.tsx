@@ -89,7 +89,7 @@ const Authorization: FC = () => {
                         value: /^\S+$/,
                         message: 'необходимо ввести токен'
                     }
-                })} placeholder="apiTokenInstance" type="text"/>
+                })} placeholder="apiTokenInstance" type="password"/>
                 {errors.apiTokenInstance &&
                     <span className={cn(styles.hint, styles.hintError)}>{errors.apiTokenInstance?.message}</span>}
                 {errors.root?.server && (
